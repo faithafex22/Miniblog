@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+
+{%block content%}
+
+<h2>Category Post List</h2>
+
+{%for post in category.post_set.all%}
+<ul>
+<li><a href="{{post.get_absolute_url}}">{{post.title}}</a></li>
+</ul>
+{%endfor%}
+
+{%endblock%}

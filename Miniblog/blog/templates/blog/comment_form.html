@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<p>Post your comment for: <a href="{post.get_absolute_url}">{{post.title}}</a></p>
+
+ <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="field">
+      <div class="control">
+        <button class="button is-success">Submit comment</button>
+      </div>
+    </div> 
+{%endblock%}

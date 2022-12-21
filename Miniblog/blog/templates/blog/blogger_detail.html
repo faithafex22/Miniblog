@@ -1,0 +1,22 @@
+{%extends "base.html"%}
+
+{%block content%}
+<h2>Blogger's Bio</h2>
+<p><strong>Name: </strong>{{blogger.first_name}} {{blogger.last_name}}</p>
+
+<p><strong>Email: </strong>{{blogger.email}}</p>
+<p><strong>Phone_no: </strong>0{{blogger.phone_no}}</p>
+
+<h2>Blogger's Posts</h2>
+{%for post in blogger.post_set.all%}
+<ul>
+<li>{{post.created_at|date:'Y-m-d'}} <a href="{{post.get_absolute_url}}">{{post.title}}</a></li>
+</ul>
+
+{%endfor%}
+
+{%if user.is_superuser or request.user == blogger.user%}
+<p><a href="{% url 'post-create' blogger.pk%}">Add A New Post Here</a></p>
+{%endif%}
+
+{%endblock%}

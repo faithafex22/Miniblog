@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{%block title%}
+<title>Faith's Blog</title>
+{%endblock%}
+
+{% block content %}
+  <h1>The Faith's Blog Home</h1>
+  <p>Welcome to Faith's blog, a website developed by <em>Faith Odunayo Adeosun</em>!</p>
+  <h2>Dynamic content</h2>
+  <p>The blog has the following record counts:</p>
+  <ul>
+    <li><strong>Total Posts:</strong> {{num_post}}</li>
+    <li><strong>Total Bloggers:</strong> {{num_blogger}}</li>
+    <li><strong>Total Categories:</strong> {{ num_category}}</li>
+    <li><strong>Total Comments:</strong> {{num_comment}}</li>
+  </ul>
+
+  <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>
+{% endblock %}

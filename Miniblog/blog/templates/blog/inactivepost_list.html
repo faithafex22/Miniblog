@@ -1,0 +1,12 @@
+{%extends "base.html"%}
+
+{%block content%}
+<h2> Inactive Post List</h2>
+
+<ul>
+{%for post in inactive_post_list%}
+<li><a href="{% url 'restore_post' post.id  %}">{{post.title}}</a>{{post.created_at}} {{post.blogger}}</li>
+{%endfor%}
+</ul>
+
+{% endblock %}

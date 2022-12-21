@@ -1,0 +1,56 @@
+{%extends "base.html"%}
+
+
+{% csrf_token %}
+{%block title%}{%endblock%}
+
+{%block content%} 
+<section class="hero ">
+    <div class="hero-body">
+      <div class="container">
+        <section class="section">
+          
+          <div class="columns">
+            <div class="column is-8 is-offset-2">
+              <div class="content is-medium">
+                
+                <h2 class="subtitle is-4">{{post.created_at|timesince}} ago</h2>
+                <h3 class="title">{{post.title}} By <strong>{{post.blogger}}</strong></h3>
+                <p>{{ post.body }}</p>
+                <p><strong>Category: {{post.category}}</a></strong></p> 
+                {%if user.is_superuser or request.user == post.blogger.user%}
+                <p><a href="{% url 'post-update' post.pk %}">Update post</a>   <a href="{% url 'post-delete' post.pk %}">Delete post</a></p>
+                {%endif%}
+                <div>
+                </p>Comments</p>
+                {% for comment in post.comment %}
+                <hr>
+                 <article class="media">
+                  <div class="media_content">
+                    <strong>
+                      {{ comment.name }}
+                    </strong><small>
+                      {{comment.created_at|timesince}} ago
+                    </small><br>
+                    {{comment.comment}}
+                  </div>
+                 </article>
+                {%endfor%}
+                <hr>
+                {%if user.is_authenticated%}
+                 <div>
+                    <p><a href="{% url 'post-comment' post.pk %}">Add a new comment</a></p>
+                 </div>
+                 {%else%}
+                    <p><a href="{% url 'login' %}?next={{request.path}}">Login </a>to add a new comment</p>
+                  {%endif%}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div> 
+      <div>
+      <section> 
+
+{%endblock%}

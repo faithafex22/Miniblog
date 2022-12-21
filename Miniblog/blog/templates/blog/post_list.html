@@ -1,0 +1,12 @@
+{%extends "base.html"%}
+{% csrf_token %}
+{%block content%}
+<h2>Post List</h2>
+
+<ul>
+{%for post in post_list%}
+<li>{{post.created_at|date:'Y-m-d'}} <a href="{{post.get_absolute_url}}">{{post.title}}</a> - <a href="{% url 'blogger-detail' post.blogger.pk %}">{{post.blogger}}</a></li>
+{%endfor%}
+</ul>
+
+{% endblock %}

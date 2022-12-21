@@ -1,0 +1,15 @@
+{% block content %}
+
+<h1>Restore Post</h1>
+
+<p>Are you sure you want to restore the post: {{ post.title }}?</p>
+<a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes, restore." />
+</form>
+
+{% endblock %}
+
+<h1>Restore</h1>
+
